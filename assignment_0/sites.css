@@ -1,0 +1,13 @@
+body{
+    background: #3B2B44;
+}
+h1{
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 1rem;
+}
+.video {
+    margin: 0;
+    padding: 1rem;
+}
