@@ -1,0 +1,17 @@
+/* #home {
+  background-image: url("../images/BAA15DF1-C734-4785-92A9-66A2DB64B2D7_1_105_c.jpeg");
+  height: 100%;
+} */
+body {
+  background-color: #3b2b44;
+}
+h1 {
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 1rem;
+}
+.video {
+  margin: 0;
+  padding: 1rem;
+}
