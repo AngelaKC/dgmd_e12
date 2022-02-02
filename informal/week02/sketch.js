@@ -9,14 +9,14 @@ function setup() {
 
 function draw() {
   background(220);
-  windmill(6,millSpeedx,"x","rgb(59,43,68)","rgb(97, 139, 74)");
-  windmill(2,millSpeedy,"y","rgb(154, 140, 152)","rgb(124, 165, 184)");
+  windmill(6, millSpeedx, "x", "rgb(59,43,68)", "rgb(97, 139, 74)");
+  windmill(2, millSpeedy, "y", "rgb(154, 140, 152)", "rgb(124, 165, 184)");
   // adjust speed of windmills bases on mouse moving accross x and y axis
   millSpeedx += 5 + map(mouseX, 0, windowWidth, -10, 10);
   millSpeedy += 5 + map(mouseY, 0, windowHeight, -10, 10);
 }
 
-function windmill(loc,sp,ax,baseColor,bladeColor){
+function windmill(loc, sp, ax, baseColor, bladeColor) {
   // windmill 1
   push();
   // move the origin to the left of the canvas
@@ -29,21 +29,17 @@ function windmill(loc,sp,ax,baseColor,bladeColor){
   vertex(50, 200);
   vertex(15, -15);
   endShape(CLOSE);
-  fill(0);  // black text
-  text("Speed controlled by "+ax+"-axis", -75, 220);
+  fill(0); // black text
+  text("Speed controlled by " + ax + "-axis", -75, 220);
 
   // windmill blades
-  fill(bladeColor);   
+  fill(bladeColor);
   rotate(radians(sp));
   triangle(0, 0, 100, 50, 50, 100);
   triangle(0, 0, -100, -50, -50, -100);
   triangle(0, 0, -100, 50, -50, 100);
   triangle(0, 0, 100, -50, 50, -100);
 
-  ellipse(0, 0, 30,);
-  // sp += 5 + map(mouseX, 0, windowWidth, -10, 10);
-
+  ellipse(0, 0, 30);
   pop();
-
 }
-
