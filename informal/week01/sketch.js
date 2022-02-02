@@ -4,8 +4,8 @@ function setup() {
 
 function draw() {
   background(220);
-  text("X: " + mouseX, 20, 30);
-  text("Y: " + mouseY, 20, 50);
+  // text("X: " + mouseX, 20, 30);
+  // text("Y: " + mouseY, 20, 50);
 
   textStyle(normal);
   textSize(24);
