@@ -24,28 +24,28 @@ function draw() {
   noStroke();
   // only add squares if mouse is pressed
   if (mouseIsPressed) {
-    // use timer to control speed of iterating through color array
+    // use timer to control speed square creation
     if (millis() >= 1000 + timer) {
       timer = millis();
       arrayLoc = round(random(0, 4)); // variable to hold the value used to call colors from myColors array
+
+      // change x and y values to random locations within canvas size
+      x = round(random(1, +canvasWidth));
+      y = round(random(1, +canvasHeight));
+
+      // choose random color
+      fill(myColors[arrayLoc]);
+
+      //translates origin to place squares randomly on canvas
+      translate(x, y);
+
+      //create small square
+      beginShape();
+      vertex(0, 0);
+      vertex(35, 0);
+      vertex(35, 35);
+      vertex(0, 35);
+      endShape(CLOSE);
     }
-
-    // change x and y values to random locations within canvas size
-    x = round(random(1, +canvasWidth));
-    y = round(random(1, +canvasHeight));
-
-    // choose random color
-    fill(myColors[arrayLoc]);
-
-    //translates origin to place squares randomly on canvas
-    translate(x, y);
-
-    //create small square
-    beginShape();
-    vertex(0, 0);
-    vertex(35, 0);
-    vertex(35, 35);
-    vertex(0, 35);
-    endShape(CLOSE);
   }
 }
