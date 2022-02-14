@@ -25,7 +25,7 @@ function draw() {
   // only add squares if mouse is pressed
   if (mouseIsPressed) {
     // use timer to control speed square creation
-    if (millis() >= 100 + timer) {
+    if (millis() >= 10 + timer) {
       timer = millis();
       arrayLoc = round(random(0, 4)); // variable to hold the value used to call colors from myColors array
 
