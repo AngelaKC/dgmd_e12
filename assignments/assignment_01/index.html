@@ -11,14 +11,87 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Assignment 1: Bauhaus</h1>
-    <h2> Bauhaus Inspiration Image</h2>
-    <img class="fit-picture"
-    src="images/462604489.jpeg"
-    alt="Gyorgy Kepes: Innocent Echo">
-    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-    
+    <h1>DGMD E-12 Creative Coding <h1>
+    <h2>Assignment 1: Bauhaus Inspired</h2>
+    <section id = "sketch-holder">
+      <h3>Digital Echos</h3>
+      <h4>Click on image to start transformation. Click again to stop.</h4>
+    </section>
+    <section id="inspiration">
+      <h3>Bauhaus Inspiration Image</h3>
+      <p>
+        This painting got my attention right away because
+         of the beautiful colors and simple shapes.
+      </p>
+      <figure class=“fit-picture”>
+        <img
+        src="images/462604489.jpeg"
+        alt=“Artwork by Gyorgy Kepes: Innocent Echo”>
+        <figcaption>Gyorgy Kepes: Innocent Echo</figcaption>
+    </figure>
+    </section>
+    <section id = "process">
+    <h3>My Process</h3>
+      <p> 
+        I started by attempting to recreate the most basic forms 
+        in the painting. I chose to use the entire rectangle canvas 
+        instead of the original square shape. I also chose to use
+        my favorite shade of purple, which is close to the purple 
+        in the original painting, but not quite. 
+  
+        Once I had the base in place, I knew I wanted to add 
+        interactivity to change the base into something new 
+        entirely.
+  
+        I thought it would be fun to layer small shapes on top
+        of the base in the same color palette to mimic some of 
+        the imperfections in the original painting. I liked the 
+        idea of using primitive shapes in keeping with the Bauhaus
+        theme. I used transparency, as to not cover the base 
+        completely. I chose to make the purple less transparent than the other colors.
+      </p>
+      <p>
+        I ran into many issues while I was coding this up and went 
+        through several iterations. 
+        <ul>
+          <li>
+            Speed of transformation: First I tried using a timer and millis() 
+            function to control the speed. Later I found that the for loop 
+            slowed it down enough.   
+          </li>
+          <li>
+            The mouseClick Function: At first I couldn’t wrap my head around 
+            how to use it, so I opted for mouseIsPressed instead. A boolean 
+            value in conjunction with an if statement was a useful way to 
+            control the transformation. This meant the user had to hold down 
+            the mouse while the transformation took place. In the end, I 
+            decided it was better to use mouseClicked function. Click once 
+            to make it transform, and click again to make it stop. It felt 
+            better to give the user more control, and wasn’t hard to implement.
+          </li>
+          <li>
+            Keeping the base drawing: At first I had the base drawing in the 
+            draw() function. When I tried to run my code, it was drawing over 
+            my shapes! I decided to put the code for the base drawing into 
+            the setup() function, since I only wanted it to run once.
+          </li>
+          <li>Using Translate for shape origins: At first I was using multiple
+            translate functions for each shape. I was noticing strange patterns
+            in my artwork, and then I remembered what Alex said regarding 
+            multiple translates causing this very issue. I added in push() 
+            and pop() to get that under control which seemed to work.
+          </li>
+          <li>
+            I wanted the colors and shape sizes to be random, so I created
+            variables that could be manipulated to accomplish the task. I 
+            opted to use an array for the colors, since there was a finite 
+            number of colors I wanted to use in this artwork.
+          </li>
+        </ul>
+      </p>
+      </section>
 
-  </body>
+
+
+ </body>
 </html>

@@ -17,7 +17,9 @@ let canvasHeight = 768;
 let canvasWidth = 1024;
 
 function setup() {
-  createCanvas(canvasWidth, canvasHeight);
+  var canvas = createCanvas(canvasWidth, canvasHeight);
+    // Move the canvas so it’s inside <section id="sketch-holder">.
+    canvas.parent('sketch-holder');
   /* Building foundation base inspired by the Bauhaus painting */
   background(myPurple);
   fill(250, 70, 100); // pink
