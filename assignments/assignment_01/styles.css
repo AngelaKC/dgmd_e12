@@ -32,6 +32,9 @@ p, section{
 li{
   margin: 1rem;
 }
+code{
+  color: #113dc1;
+}
 
 .p5Canvas{
   margin: 0 0 0 1.5rem;
