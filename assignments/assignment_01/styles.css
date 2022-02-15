@@ -35,7 +35,9 @@ li{
 code{
   color: #113dc1;
 }
-
+figcaption{
+  font-style: italic;
+}
 .p5Canvas{
   margin: 0 0 0 1.5rem;
   padding: 0;
