@@ -6,7 +6,7 @@ let myColors = [
   "rgba(53, 153, 146, 0.2)", // teal - 3
   "rgba(111, 219, 210, 0.2)", // light teal - 4
 ];
-let myPurple = "rgb(59, 43, 68)";  // purple without tranparency
+let myPurple = "rgb(59, 43, 68)"; // purple without tranparency
 let x = 100; // x location
 let y = 180; // y location
 let ellipseWidth = 0; // used to size circles
@@ -18,9 +18,29 @@ let canvasWidth = 1024;
 
 function setup() {
   var canvas = createCanvas(canvasWidth, canvasHeight);
-    // Move the canvas so it’s inside <section id="sketch-holder">.
-    canvas.parent('sketch-holder');
+  // Move the canvas so it’s inside <section id="sketch-holder">.
+  canvas.parent("sketch-holder");
+  drawBase(); // draws base image
+  canvas.mouseClicked(toggler); // only fires when user clicks on canvas
+}
+
+function draw() {
+  transformation(); // runs transformation 
+
+}
+// this function sets the clickToggle variable when mouse is clicked
+function toggler() {
+  if (clickToggle) {
+    // if value is tru change to false
+    clickToggle = false;
+  } else {
+    // else value is false and change to true
+    clickToggle = true;
+  }
+}
+function drawBase() {
   /* Building foundation base inspired by the Bauhaus painting */
+
   background(myPurple);
   fill(250, 70, 100); // pink
   stroke(59, 43, 68); // lighter purple outlines on rectangles
@@ -51,8 +71,7 @@ function setup() {
     (canvasHeight / 10) * 7.6
   );
 }
-
-function draw() {
+function transformation() {
   // controls transformation to base drawing created in setup
 
   // allows user to toggle transformations on/off with mouse click
@@ -113,13 +132,9 @@ function draw() {
     /* End Squares */
   }
 }
-// this function sets the clickToggle variable when mouse is clicked
-function mouseClicked() {
-  if (clickToggle) {
-    // if value is tru change to false
-    clickToggle = false;
-  } else {
-    // else value is false and change to true
-    clickToggle = true;
+function keyPressed(){
+  if(keyCode === TAB){
+    clear();
+    drawBase();
   }
 }

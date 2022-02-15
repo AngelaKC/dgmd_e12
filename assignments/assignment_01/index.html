@@ -3,19 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment 1: Bauhaus</title>
-    <style> body {padding: 0; margin: 0;} </style>
+    <title>Assignment 1: Bauhaus Inspired</title>
     <script src="libraries/p5.js"></script>
     <script src="libraries/p5.sound.js"></script>
     <script src="sketch.js"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>DGMD E-12 Creative Coding <h1>
+    <h1>DGMD E-12 Creative Coding </h1>
     <h2>Assignment 1: Bauhaus Inspired</h2>
     <section id = "sketch-holder">
       <h3>Digital Echos</h3>
-      <h4>Click on image to start transformation. Click again to stop.</h4>
+      <h4>Click toggles transformation. TAB key clears transformation.</h4>
     </section>
     <section id="inspiration">
       <h3>Bauhaus Inspiration Image</h3>
@@ -23,11 +22,11 @@
         This painting got my attention right away because
          of the beautiful colors and simple shapes.
       </p>
-      <figure class=“fit-picture”>
+      <figure>
         <img
         src="images/462604489.jpeg"
-        alt=“Artwork by Gyorgy Kepes: Innocent Echo”>
-        <figcaption>Gyorgy Kepes: Innocent Echo</figcaption>
+        alt="Artwork by Gyorgy Kepes Innocent Echo">
+        <figcaption>"Gyorgy Kepes: Innocent Echo"</figcaption>
     </figure>
     </section>
     <section id = "process">
@@ -55,43 +54,55 @@
         through several iterations. 
         <ul>
           <li>
-            Speed of transformation: First I tried using a timer and millis() 
+            Speed of transformation: First I tried using a timer and <code>millis()</code>
             function to control the speed. Later I found that the for loop 
             slowed it down enough.   
           </li>
           <li>
-            The mouseClick Function: At first I couldn’t wrap my head around 
-            how to use it, so I opted for mouseIsPressed instead. A boolean 
+            The <code>mouseClick()</code> Function: At first I couldn’t wrap my head around 
+            how to use it, so I opted for <code>mouseIsPressed()</code>instead. A boolean 
             value in conjunction with an if statement was a useful way to 
             control the transformation. This meant the user had to hold down 
             the mouse while the transformation took place. In the end, I 
-            decided it was better to use mouseClicked function. Click once 
+            decided it was better to use <code>mouseClicked()</code> function. Click once 
             to make it transform, and click again to make it stop. It felt 
             better to give the user more control, and wasn’t hard to implement.
           </li>
           <li>
-            Keeping the base drawing: At first I had the base drawing in the 
-            draw() function. When I tried to run my code, it was drawing over 
-            my shapes! I decided to put the code for the base drawing into 
-            the setup() function, since I only wanted it to run once.
+            The <code>mouseClicked()</code> fires regardless of mouse position -- on or 
+            off the canvas. I was reading through the documentation and found
+            mousePressed used canvas dot notation, to identify if the mouse
+            was pressed while on the canvas. I used the same idea for mouseClicked
+            and it worked!
           </li>
-          <li>Using Translate for shape origins: At first I was using multiple
+          <li>
+            Keeping the base drawing: At first I had the base drawing in the 
+            draw function. When I tried to run my code, it was drawing over 
+            my shapes! I decided to put the code for the base drawing into 
+            the setup function, since I only wanted it to run once.
+          </li>
+          <li>Using <code>translate()</code> for shape origins: At first I was using multiple
             translate functions for each shape. I was noticing strange patterns
             in my artwork, and then I remembered what Alex said regarding 
-            multiple translates causing this very issue. I added in push() 
-            and pop() to get that under control which seemed to work.
+            multiple translates causing this very issue. I added in <code>push()</code>
+            and <code>pop()</code> to get that under control which seemed to work.
           </li>
           <li>
             I wanted the colors and shape sizes to be random, so I created
             variables that could be manipulated to accomplish the task. I 
             opted to use an array for the colors, since there was a finite 
             number of colors I wanted to use in this artwork.
-          </li>
+          </li>          
+          <li>
+            I wanted to have the ability to clear the transformation. I found 
+            the clear function and realized I would need to redraw the 
+            base drawing after clearing the canvas. I moved the <code>baseDraw ()</code>into 
+            it's own function so it could be easily called. I then added some
+            functionality to the <code>keyPressed()</code> function to clear the canvas and 
+            redraw the base drawing!
+          </li>  
         </ul>
       </p>
       </section>
-
-
-
  </body>
 </html>
