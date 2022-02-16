@@ -17,6 +17,8 @@ let canvasHeight = 768;
 let canvasWidth = 1024;
 
 function setup() {
+  /* Used code from this site ti wrangle the canvas:
+  https://github.com/processing/p5.js/wiki/Positioning-your-canvas */
   var canvas = createCanvas(canvasWidth, canvasHeight);
   // Move the canvas so it’s inside <section id="sketch-holder">.
   canvas.parent("sketch-holder");
@@ -31,7 +33,7 @@ function draw() {
 // this function sets the clickToggle variable when mouse is clicked
 function toggler() {
   if (clickToggle) {
-    // if value is tru change to false
+    // if value is true change to false
     clickToggle = false;
   } else {
     // else value is false and change to true
