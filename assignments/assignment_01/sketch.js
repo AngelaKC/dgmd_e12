@@ -6,7 +6,7 @@ let myColors = [
   "rgba(53, 153, 146, 0.2)", // teal - 3
   "rgba(111, 219, 210, 0.2)", // light teal - 4
 ];
-let myPurple = "rgb(59, 43, 68)"; // purple without tranparency
+let myPurple = "rgb(59, 43, 68)"; // purple without transparency
 let x = 100; // x location
 let y = 180; // y location
 let ellipseWidth = 0; // used to size circles

@@ -1,46 +1,47 @@
+let myColors = [
+  "rgba(78, 154, 186, 0.9)", // blue green - 0
+  "rgba(148, 101, 154, 0.9)", // french lilac - 1
+  "rgba(191, 44, 61, 0.9)", // cardinal - 2
+  "rgba(214, 108, 185, 0.9)", // sky magenta- 3
+  "rgba(131, 61, 98, 0.9)", // twilight lavender - 4
+  "rgba(161, 229, 171, 0.9)", // green  - 5
+  "rgba(1255, 212, 0, 0.9)", // yellow  - 6
+  
+];
+let clickToggle = false; // controls transformation
 let canvasWidth = 1000;
 let canvasHeight = 750;
-let centerX = canvasWidth / 2;
-let centerY = canvasHeight / 2;
-let d = 100;
-let a = 0;
-let x, y;
-let r = 100;
+let circleSize = 5;
 
 function setup() {
-  createCanvas(canvasWidth, canvasHeight);
-  background(10);
-  fill(243, 218, 6);
-  strokeWeight(7);
-  stroke("rgba(243, 176, 6,0.1)");
-  ellipse(centerX, centerY, d);
+  var canvas = createCanvas(canvasWidth, canvasHeight);
+  canvas.mouseClicked(toggler); // only fires when user clicks on canvas
+  background(240);
 }
 
 function draw() {
-
-
-  /* Center */
-
-
-  /* Orbit 1*/
   noStroke();
-  fill(205, 205, 207);
+  if (clickToggle) {
+    for (let x = circleSize; x <= canvasWidth - circleSize; x += circleSize){
+      for (let y = circleSize; y <= canvasHeight -circleSize; y += circleSize){
+        for (let d = 0; d <= circleSize; d += circleSize){
+          fill(myColors[round(random(0,6))]);
+          ellipse(x, y, d);
+        }
+        // Add a slash through the ellipses for the hell of it
+        line(x-20, y-20, x+20, y+20);
+      }
+  }
+}
+}
 
-  centerY = sin(radians(a)) * r;
-  centerX = cos(radians(a)) * r;
-  ellipse(centerX + d + 4, centerY + d + 4, d / 2);
-  a += 3;
-
-  /* Planets 
-  Sun:     100.0
-  Mercury:   0.3 distance:   4.163
-  Venus:     0.8 distance:   7.767
-  Earth:     0.9 distance:  10.745
-  Mars:      0.4 distance:  16.368
-  Jupiter   10.2 distance:  55.904
-  Saturn     8.3 distance: 102.521
-  Uranus     3.3 distance: 206.214
-  Neptune    3.2 distance: 323.291
-  Pluto      0.1 distance: 424.815
-  */
+// this function sets the clickToggle variable when mouse is clicked
+function toggler() {
+  if (clickToggle) {
+    // if value is true change to false
+    clickToggle = false;
+  } else {
+    // else value is false and change to true
+    clickToggle = true;
+  }
 }
