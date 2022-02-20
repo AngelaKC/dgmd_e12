@@ -8,7 +8,7 @@ function setup() {
   var canvas = createCanvas(canvasWidth, canvasHeight);
   background("rgba(59, 43, 68,0.7)");
   textStyle(BOLD);
-  textSize(14);
+  textSize(16);
   noStroke();
   noLoop();
 }
@@ -21,11 +21,12 @@ function draw() {
         y <= canvasHeight - circleSize;
         y += circleSize
       ) {
+        count++;
         for (let d = 0; d <= circleSize; d += circleSize) {
           ellipse(x, y, d);
-          count++;
+
         }
-         text(count/2,x-5,y);
+         text(count,x-5,y);
       }
     }
 }
