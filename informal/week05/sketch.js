@@ -8,14 +8,14 @@ let myColors = [
   "rgb(58, 134, 255)", // 4
 ];
 let myMessages = [
-  "As I see it, Yes.", // 0
-  "It is certain.", // 1
-  "It is decidedly so.", // 2
-  "Ask again later.", // 3
-  "Very Doubtful", // 4
-  "Cannot predict now.", // 5
-  "Very doubtful.", // 6
-  "Do not count on it.", // 6
+  "Yes!", // 0
+  "Absolutely", // 1
+  "Definitely", // 2
+  "Trust me, you don't want to know.", // 3
+  "Meh", // 4
+  "Probably", // 5
+  "No.", // 6
+  "Don't bet on it.", // 7
 ];
 let clickToggle = false;
 let circle = {
