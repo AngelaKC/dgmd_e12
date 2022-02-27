@@ -9,13 +9,13 @@ let myColors = [
 ];
 let myMessages = [
   "As I see it, Yes.", // 0
-  "Ask again later.", // 1
-  "Better not tell you now.", // 2
-  "Cannot predict now.", // 3
-  "Concentrate and ask again.", // 4
-  "Do not count on it.", // 5
-  "It is certain.", // 6
-  "It is decidedly so.", // 7
+  "It is certain.", // 1
+  "It is decidedly so.", // 2
+  "Ask again later.", // 3
+  "Very Doubtful", // 4
+  "Cannot predict now.", // 5
+  "Very doubtful.", // 6
+  "Do not count on it.", // 6
 ];
 let clickToggle = false;
 let circle = {
