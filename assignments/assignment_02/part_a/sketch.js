@@ -49,7 +49,7 @@ function drawClock() {
   stroke(97, 139, 74);
   let secAngle = map(sec, 0, 60, 0, 360);
   push();
-  strokeWeight(20);
+  strokeWeight(11);
   rotate(secAngle);
   // line(0, 0, canvasSize / 3, 0);
   rect(0, 0, canvasSize/3, 10);
