@@ -25,11 +25,8 @@ function setup() {
 
 function draw() {
   background(255);
-  drawBoxes();
-  // checks if ESCAPE key was pressed
-  if (keyPressed()) {
-    drawBoxes();
-  }
+  // checks if mouse was pressed
+  canvas.mousePressed();
 }
 function drawBoxes() {
   clear();
@@ -55,7 +52,7 @@ function drawBoxes() {
   textSize(32);
   if (box1.jackpot(box2, box3)) {
     fill(255, 0, 0);
-    text("You Win!", 382, 400);
+    text("Jackpot!", 382, 400);
     // increments win counter
     win++;
   } else {
@@ -67,12 +64,10 @@ function drawBoxes() {
   // changes to smaller text size
   textSize(12);
   // gives instructions to continue play
-  text("Press ESCAPE key to play again", 365, 425);
+  text("Click on canvas to play again", 370, 425);
   // displays stats
   text("You have won " + win + " out of " + total, 390, 440);
 }
-function keyPressed() {
-  if (keyCode === ESCAPE) {
+function mousePressed() {
     drawBoxes();
-  }
 }
