@@ -7,7 +7,7 @@ let walkers = [];
 let numWalkers = 20;
 
 function setup() {
-  createCanvas(windowWidth/2, windowHeight/2);
+  createCanvas(windowWidth, windowHeight);
     for (let i = 0; i < numWalkers; i++) {
       walkers[i] = new Walker();
     }
