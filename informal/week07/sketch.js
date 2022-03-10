@@ -42,7 +42,7 @@ function touching(x, y, r) {
 function mouseClicked() {
   for(var i = 0; i < walkers.length; i++) {
     if(touching(walkers[i].x, walkers[i].y, walkers[i].r)) {
-      walkers[i].resize(walkers[i].circleSize * 1.5);
+      walkers[i].resize();
     }
   }
 }
