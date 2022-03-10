@@ -13,7 +13,7 @@ function setup() {
 }
 
 function draw() {
-  background(59, 43, 68);
+  background(59, 43, 68);  // purple
   hr = hour();
   mn = minute();
   sec = second();

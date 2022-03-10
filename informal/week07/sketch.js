@@ -5,6 +5,7 @@
 let walkers = [];
 // the number of objects we want in our array
 let numWalkers = 20;
+let sizeFactor = 1.2;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -42,7 +43,7 @@ function touching(x, y, r) {
 function mouseClicked() {
   for(var i = 0; i < walkers.length; i++) {
     if(touching(walkers[i].x, walkers[i].y, walkers[i].r)) {
-      walkers[i].resize();
+      walkers[i].resize(sizeFactor);
     }
   }
 }

@@ -46,8 +46,8 @@ function Walker() {
     }
   };
 
-  this.resize = function (){
-    this.circleSize = this.circleSize * 1.5;
+  this.resize = function (s){
+    this.circleSize = this.circleSize * s;
     // reset radius to ensure touching still works
     this.r = this.circleSize/2;
   }
