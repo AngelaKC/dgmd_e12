@@ -18,9 +18,9 @@ function draw() {
   background(59, 43, 68); // purple
 
   // set variables to hold time related values
-  h = hour() * 10;
-  m = minute() * 10;
-  s = second() * 10;
+  h = (hour()+1) * 10;
+  m = (minute()+1) * 10;
+  s = (second()+1) * 10;
   noStroke();
 
   /* Hour */
