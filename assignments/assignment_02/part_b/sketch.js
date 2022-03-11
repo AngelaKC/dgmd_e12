@@ -50,7 +50,7 @@ function draw() {
   translate(-100, -100);
   fill(myColors[2]);
 
-  // rotate(s);
+  rotate(s);
   quad(s, 31, 86, s, -s, 63, s,-s);
 
   pop();
