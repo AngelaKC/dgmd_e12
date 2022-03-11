@@ -15,7 +15,6 @@ function setup() {
   strokeWeight(4);
   canvas.mousePressed();
 }
-
 function draw() {}
 function writeTic(spacer) {
   lx1 += spacer;
