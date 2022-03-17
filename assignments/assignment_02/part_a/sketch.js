@@ -1,6 +1,6 @@
-let h = 0;
-let m = 0;
-let s = 0;
+// Create time variables
+let h, m, s;
+// Set clock size
 let canvasSize = 800;
 
 function setup() {
@@ -12,10 +12,13 @@ function setup() {
 function draw() {
   background(59, 43, 68); // purple
 
-  //grab current time and assign to variables
+  // Grab current time and assign to variables
   h = hour();
   m = minute();
   s = second();
+  // h = 3;
+  // m = 15;
+  // s = 45;
 
   // Text settings
   textSize(40);
@@ -27,10 +30,10 @@ function draw() {
   fill(255);
 
   /* Clock Numbers */
-  text("1", canvasSize / 2, 100);
-  text("3", (canvasSize / 12) * 11, canvasSize / 2);
+  text("1", canvasSize / 2, 90);
+  text("3", (canvasSize / 12) * 11 - 15, canvasSize / 2 + 15);
   text("6", canvasSize / 2, (canvasSize / 12) * 11);
-  text("9", canvasSize / 12, canvasSize / 2);
+  text("9", canvasSize / 12 + 15, canvasSize / 2 + 15);
 
   // draws digital clock
   drawDigital();
@@ -65,8 +68,8 @@ function drawAnalog() {
   rect(0, 0, canvasSize / 2.9, 1);
   pop();
 
-  // setting color for minute and hour hands
-  stroke(97, 139, 74); // light green
+  // setting color for minute hand
+  stroke("rgba(97, 139, 74, 0.9)"); // light green
 
   /* Minute Hand */
   // using map to ensure 60 rotations will rotate 360 degrees
@@ -83,6 +86,8 @@ function drawAnalog() {
   // using map to ensure 60 rotations will rotate 360 degrees
   // using modulus operator to we are mapping 12 spots, not 24 hour
   let hAngle = map(h % 12, 0, 12, 0, 360);
+  // setting color for hour hand
+  stroke("rgba(36, 80, 214, 0.9)"); // light blue
 
   // using push & pop to control rotations separately
   push();
