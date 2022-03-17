@@ -1,6 +1,5 @@
-let h = 0;
-let m = 0;
-let s = 0;
+// Create time variables
+let h,m,s;
 let canvasSize = 900;
 /* Color array */
 let myColors = [
@@ -18,9 +17,12 @@ function draw() {
   background(59, 43, 68); // purple
 
   // set variables to hold time related values
-  h = (hour()+1) * 10;
-  m = (minute()+1) * 10;
-  s = (second()+1) * 10;
+  h = (hour() + 1) * 10;
+  m = (minute() + 1) * 3;
+  s = (second() + 1) * 5;  
+  // h = (23+ 1) * 10;
+  // m = (59+ 1) * 3;
+  // s = (59 + 1) * 5;
   noStroke();
 
   /* Hour */
@@ -50,9 +52,9 @@ function draw() {
   push();
   translate(-100, -100);
   fill(myColors[2]);
-  // rotates each minute
+  // rotates each second
   rotate(s);
   // shape changes each hour
-  quad(s, 31, 86, s, -s, 63, s, -s);
+  quad(s, 11, 66, s, -s, 43, s, -s);
   pop();
 }
