@@ -61,5 +61,6 @@ function keyPressed() {
     ly1 = startLoc;
     lx2 = startLoc;
     ly2 = startLoc * 2 + 5;
+    ticCount = 0;
   }
 }
