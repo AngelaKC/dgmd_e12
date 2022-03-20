@@ -43,7 +43,7 @@ function draw() {
   fill(myColors[1]);
   // rotates each minute
   rotate(m);
-  // shape changes each hour
+  // shape changes each minute
   quad(m, 31, m, m, -m, 63, -m, -m);
   pop();
 
@@ -54,7 +54,7 @@ function draw() {
   fill(myColors[2]);
   // rotates each second
   rotate(s);
-  // shape changes each hour
+  // shape changes each second
   quad(s, 11, 66, s, -s, 43, s, -s);
   pop();
 }
