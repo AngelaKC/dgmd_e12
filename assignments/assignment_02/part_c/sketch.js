@@ -1,4 +1,4 @@
-let canvasSize = 500;
+let canvasSize = 200;
 let ticCount = 0;
 startLoc = 20;
 let lx1 = startLoc;
