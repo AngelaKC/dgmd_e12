@@ -1,6 +1,6 @@
 let canvasSize = 600;
 let ticCount = 0;
-startLoc = 20;
+let startLoc = 20;
 let lx1 = startLoc;
 let ly1 = startLoc;
 let lx2 = startLoc;
