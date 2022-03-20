@@ -1,4 +1,4 @@
-let canvasSize = 200;
+let canvasSize = 600;
 let ticCount = 0;
 startLoc = 20;
 let lx1 = startLoc;
@@ -26,7 +26,8 @@ function writeTic(spacer) {
   five = lx1 - 5 * spacer;
 
   if (ticCount % 5 == 0) {
-    line(five, ly1, lx2, ly2);
+    // line(five, ly1, lx2, ly2);
+    line(lx1, ly1, five, ly2);
   } else {
     line(lx1, ly1, lx2, ly2);
   }
