@@ -47,4 +47,16 @@ figcaption{
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
- }
+ } 
+ a:link,
+ a:visited,
+ a:hover {
+  color: #3b2b44;
+  text-decoration: none;
+  padding: 0.5em 0;
+}
+a:hover,
+a:active,
+a.current {
+  color: lightgray;
+}
