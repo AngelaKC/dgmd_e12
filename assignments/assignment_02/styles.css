@@ -61,5 +61,5 @@ figcaption{
 a:hover,
 a:active,
 a.current {
-  color: lightgray;
+  color: #fff;
 }
