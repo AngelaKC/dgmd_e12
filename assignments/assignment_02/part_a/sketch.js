@@ -1,5 +1,7 @@
 // Create time variables
 let h, m, s;
+let digitalHour;
+let amPm;
 // Set clock size
 let canvasSize = 800;
 
@@ -16,7 +18,9 @@ function draw() {
   h = hour();
   m = minute();
   s = second();
-  // h = 3;
+
+  // for testing purposes
+  // h = 0;
   // m = 15;
   // s = 45;
 
@@ -49,7 +53,18 @@ function drawDigital() {
   /*uses nf to format time values into Strings 
   and zero fill minutes and seconds < 10 */
   textSize(25);
-  text(h + ":" + nf(m, 2, 0) + ":" + nf(s, 2, 0), canvasSize / 2, 35);
+  // reset zero value to 12
+  digitalHour = h % 12;
+  if(digitalHour == 0){
+    digitalHour = 12;
+  }
+  // Set AM or PM
+  if(h >12){
+    amPm = " PM";
+  }else{
+    amPm = " AM";
+  }
+  text(nf(digitalHour, 2, 0) + ":" + nf(m, 2, 0) + ":" + nf(s, 2, 0) + amPm, canvasSize / 2, 35);
 }
 
 function drawAnalog() {
