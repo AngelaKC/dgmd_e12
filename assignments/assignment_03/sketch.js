@@ -101,6 +101,7 @@ function newName() {
   let message = "Happy Birthday " + textField.value() + "!!!";
   output.html(message);
   toggler();
+  
 }
 // this function sets the clickToggle variable when mouse is clicked
 function toggler() {
