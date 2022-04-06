@@ -52,6 +52,11 @@ function setup() {
   canvas.position(0, 0);
   canvas.style("z-index", "-1");
   noStroke();
+  // get user input
+  textField = select("#name");
+  textField = createInput();
+  textField.position(145, 30);
+  textField.parent("name");
   // choose color palette
   radio = createRadio();
   radio.option("1", "blue");
@@ -59,15 +64,15 @@ function setup() {
   radio.option("3", "multi");
   radio.selected("1");
   radio.style("width", "60px");
+  radio.position( 145,60);
   textAlign(CENTER);
-  // get user input
-  textField = select("#input");
-  textField = createInput("your name");
-  textField.position(10, 90);
+  radio.parent("color");
+
   output = select("#output");
   output.position(windowWidth / 4, windowHeight / 2);
   button = createButton("Start/Stop");
-  button.position(10, 125);
+  button.position(160, 135);
+  button.parent("input");
   button.mousePressed(newName);
 }
 
