@@ -52,8 +52,6 @@ function setup() {
   canvas.position(0, 0);
   canvas.style("z-index", "-1");
   noStroke();
-  // background(255);
-  canvas.mouseClicked(toggler); // only fires when user clicks on canvas
   // choose color palette
   radio = createRadio();
   radio.option("1", "blue");
@@ -66,11 +64,10 @@ function setup() {
   textField = select("#input");
   textField = createInput("your name");
   textField.position(10, 90);
-  // textField.changed(newName);
   output = select("#output");
   output.position(windowWidth / 4, windowHeight / 2);
-  button = createButton('Submit');
-  button.position( 10, 125);
+  button = createButton("Start/Stop");
+  button.position(10, 125);
   button.mousePressed(newName);
 }
 
@@ -98,6 +95,7 @@ function draw() {
 function newName() {
   let message = "Happy Birthday " + textField.value() + "!!!";
   output.html(message);
+  toggler();
 }
 // this function sets the clickToggle variable when mouse is clicked
 function toggler() {
