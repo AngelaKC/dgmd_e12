@@ -1,5 +1,5 @@
 // set base api URL
-let api = "http://www.boredapi.com/api/activity";
+let api = "https://www.boredapi.com/api/activity";
 // Create variables for use in program
 let myActivity;
 let activityType, link;
