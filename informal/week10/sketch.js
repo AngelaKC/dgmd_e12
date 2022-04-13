@@ -1,75 +1,64 @@
-let myEpisode, mySnd, myTruck, myBotd;
-let api = "https://bobsburgers-api.herokuapp.com/"
-let season;
-let episodeUrl, sndUrl,truckUrl, botdUrl; 
+// set base api URL
+let api = "http://www.boredapi.com/api/activity";
+// Create variables for use in program
+let myActivity;
+let activityType, link;
+// Create array to hold drop down values
+let activityTypes = [
+  "Choose Activity Type",
+  "busywork",
+  "charity",
+  "cooking",
+  "diy",
+  "education",
+  "music",
+  "recreational",
+  "relaxation",
+  "social",
+];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  seasonSel = createSelect();
-  seasonSel.position(20, 25);
-  for( let i =1; i< 13; i++){
-    seasonSel.option(i);
+  // create drop down functionality for user
+  activitySel = createSelect();
+  activitySel.position(20, 120);
+  // use array of values to create Select options
+  for (let i = 0; i < activityTypes.length; i++) {
+    activitySel.option(activityTypes[i]);
   }
-  seasonSel.changed(seasonSelEvent);
-  textAlign(CENTER);
-  background(255);
-
+  // create changed event
+  activitySel.changed(typeSelEvent);
+  // configure text
+  fill(59, 43, 68);
+  strokeWeight(0);
+  textStyle(NORMAL);
+  textSize(35);
+  textFont("Arial");
 }
-function seasonSelEvent() {
-  season = seasonSel.value();
-  // concatenate all the strings together to make the url
-  episodeUrl = api + "episodes/?season=" + season;
-  console.log(episodeUrl);
-  sndUrl = api + "storeNextDoor/?season=" + season;
-  console.log(sndUrl);
-  truckUrl = api + "pestControlTruck/?season=" + season ;
-  console.log(truckUrl);
-  botdUrl  = api + "burgerOftheDay/?season=" + season ;
-  console.log(botdUrl);
-
+// Action taken when user changes selection
+function typeSelEvent() {
+  activityType = activitySel.value();
+  // concatenate user selected type to base api url
+  typeUrl = api + "?type=" + activityType;
+  // test url to see link applied
+  // typeUrl = api + "?key=4522866" ;
   // get data, call a callback function we called 'gotData' when data received
-  loadJSON(episodeUrl, episodeData);
-  loadJSON(sndUrl, sndData);
-  loadJSON(truckUrl, truckData);
-  loadJSON(botdUrl, botdData);
+  loadJSON(typeUrl, activityData);
 }
 
 // the callback from loadJSON sends 'data' automatically!
-function episodeData(myData) {
-  myEpisode = myData;
-}
-// the callback from loadJSON sends 'data' automatically!
-function sndData(myData) {
-  mySnd = myData;
-}
-// the callback from loadJSON sends 'data' automatically!
-function truckData(myData) {
-  myTruck = myData;
-}
-// the callback from loadJSON sends 'data' automatically!
-function botdData(myData) {
-  myBotd = myData;
-}
-function draw() {
-  // removeElements();
-
-  if (myEpisode) {
+function activityData(myData) {
+  myActivity = myData;
+  // if data loads print to screen
+  if (myActivity) {
     // make the temperature value the radius rather than diameter
-    // text("Episode name: " + myEpisode.name,100,100);
-    for (let i =0; i< myEpisode.length;i++){
-      console.log(myEpisode.name[i]);
-    }
+    clear();
+    fill(59, 43, 68);
+    // create an anchor tag to hold value if link is populated
+    link = createA(myActivity.link, myActivity.link);
+    text(myActivity.activity, 16, 100);
+    link.position(22, 250);
   }
-  // if (mySnd) {
-  //   // make the temperature value the radius rather than diameter
-  //   text("Store Next Door: " + mySnd.name,100,125);
-  // }
-  // if (myTruck) {
-  //   // make the temperature value the radius rather than diameter
-  //   text("Pest Control Truck: " +myTruck.name,100,150);
-  // }
-  // if (myBotd) {
-  //   // make the temperature value the radius rather than diameter
-  //   text("Burger of the day: " +myBotd.name,100,175);
-  // }
 }
+// not needed for this application
+function draw() {}
