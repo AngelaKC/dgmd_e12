@@ -1,26 +1,23 @@
-let canvasWidth = 1000;
-let canvasHeight = 500;
-let myColors = [
-  "rgb(255, 190, 11)", // 0
-  "rgb(251, 86, 7)", // 1
-  "rgb(255, 0, 110)", // 2
-  "rgb(131, 56, 236)", // 3
-  "rgb(58, 134, 255)", // 4
-];
-let myPinks = [
-  "rgb(255,0,129)", // 0
-  "rgb(255,72,165)", // 1
-  "rgb(255,119,188)", // 2
-  "rgb(255,174,215)", // 3
-  "rgb(255,202,229)", // 4
-];
-let myBlues = [
-  "rgb(0,255,255)", // 0
-  "rgb(0,219,255)", // 1
-  "rgb(16,165,245)", // 2
-  "rgb(12,113,224)", // 3
-  "rgb(8,89,198)", // 4
-];
+let canvasWidth = 1024;
+let canvasHeight = 684;
+let myBackgrounds = [];
+let myImgUrls = [
+  "images/blackWithBdayCandles.jpg", // 0
+  "images/blueAstronautCupcakes.jpg", // 1
+  "images/blueBricks.jpg", // 2
+  "images/blueConfetti.jpg", // 3
+  "images/dinosaurParty.jpg", // 4
+  "images/handWithMultiColorBalloons.jpg", // 5
+  "images/neutralCakeWithPopcorn.jpg", // 6
+  "images/pinkBalloons.jpg", // 7
+  "images/pinkBluePurpleSprinkles.jpg", // 8
+  "images/pinkIcing.jpg", // 9
+  "images/prettyPinkPackages.jpg", // 10
+  "images/rainbowSprinkles.jpg", // 11
+  "images/sharks.jpg", // 12
+  "images/whiteCupcakeonwhiteboards.jpg", // 13
+  "images/whiteWithBrownPackages.jpg", // 14
+]
 let textField, output, button;
 let clickToggle = false;
 let circle = {
@@ -46,38 +43,24 @@ let circle = {
     ellipse(this.x, this.y, this.circleSize, this.circleSize * 3);
   },
 };
+function preload(){
+  for(let i=0; i < myImgUrls.length;i++){
+    myBackgrounds[i]=loadImage(myImgUrls[i]);
+  }
+}
 function setup() {
   var canvas = createCanvas(windowWidth, windowHeight);
   // positions the canvas and used z-index to
   // make it a back ground image
-  // This is my canvas element
   canvas.position(0, 0);
   canvas.style("z-index", "-1");
   noStroke();
   // get user input
-  // Creating an Input Element
   textField = select("#name");
   textField = createInput();
-  // using position() to control location
   textField.position(145, 30);
-  // using parent 
   textField.parent("name");
-  // choose color palette
-  // creating Radio Button element
-  // allows user to choose color palette
-  radio = createRadio();
-  radio.option("1", "blue");
-  radio.option("2", "pink");
-  radio.option("3", "multi");
-  radio.selected("1");
-  // using style() to control look & feel
-  radio.style("width", "60px");
-  // using position() to control location
-  radio.position(145, 60);
-  textAlign(CENTER);
-  // using parent() 
-  radio.parent("color");
-  // creating start/stop controller 
+
   // creating Button element
   output = select("#output");
   output.position(windowWidth / 4, windowHeight / 2);
