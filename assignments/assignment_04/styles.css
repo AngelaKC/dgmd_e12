@@ -15,7 +15,8 @@ section {
   padding: 0.5rem;
 }
 #input{
-  display: inline-block;
+  display: block;
+  /* display: inline-block; */
   background-color: #fff;
   padding-right: 10rem;
   padding-bottom: 5rem;

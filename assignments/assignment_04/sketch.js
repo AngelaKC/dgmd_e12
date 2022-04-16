@@ -26,8 +26,8 @@ function preload() {
   }
 }
 function setup() {
-  // var canvas = createCanvas(canvasWidth, canvasHeight);
-  var canvas = createCanvas(windowWidth, windowHeight);
+  var canvas = createCanvas(canvasWidth, canvasHeight);
+  // var canvas = createCanvas(windowWidth, windowHeight);
   // positions the canvas and used z-index to
   // make it a back ground image
   canvas.position(0, 0);
@@ -57,7 +57,6 @@ function setup() {
   sel.option("Sharks", "11");
   sel.option("Sprinkles", "12");
   sel.option("White Cupcakes", "13");
-  // sel.selected('candles');
   sel.changed(mySelectEvent);
   // creating Button element
   output = select("#output");
