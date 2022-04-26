@@ -1,0 +1,52 @@
+{
+    "themes": [
+        {
+            "id": "0",
+            "themeName": "Blue Bricks",
+            "photo": "images/blueBricks.jpg",
+            "canvasWidth": "1024",
+            "canvasHeight": "768",
+            "textSize": "76",
+            "textColor": "#fff",
+            "myColors": [
+                "rgba(217, 216, 222, 0.3)",
+                "rgba(81, 127, 150, 0.3)",
+                "rgba(109, 158, 182, 0.3)",
+                "rgba(34, 66, 92, 0.3)",
+                "rgba(231, 229, 233, 0.3)"
+            ]
+        },
+        {
+            "id": "1",
+            "themeName": "Candles",
+            "photo": "images/candles.jpg",
+            "canvasWidth": "1024",
+            "canvasHeight": "768",
+            "textSize": "76",
+            "textColor": "#fff",
+            "myColors": [
+                "rgba(143, 2, 34, 0.3)",
+                "rgba(202, 128, 7, 0.3)",
+                "rgba(4, 135, 57, 0.3)",
+                "rgba(230, 7, 28, 0.3)",
+                "rgba(0, 91, 154, 0.3)"
+            ]
+        },
+        {
+            "id": "2",
+            "themeName": "Pink Icing",
+            "photo": "images/pinkIcing.jpg",
+            "canvasWidth": "1024",
+            "canvasHeight": "768",
+            "textSize": "76",
+            "textColor": "#fff",
+            "myColors": [
+                "rgba(92, 27, 25, 0.3)",
+                "rgba(251, 214, 248, 0.3)",
+                "rgba(252, 198, 230, 0.3)",
+                "rgba(252, 226, 251, 0.3)",
+                "rgba(223, 83, 109, 0.3)"
+            ]
+        }
+    ]
+}
