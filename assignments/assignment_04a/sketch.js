@@ -25,7 +25,7 @@ let textField, output, button;
 let myBG, birthdayMsg, myCake
 ;
 let clickToggle = false;
-let confetti = {
+let Confetti = {
   // circle properties
   x: canvasWidth / 2,
   y: canvasHeight / 2,
