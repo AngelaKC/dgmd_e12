@@ -4,11 +4,12 @@ let textField, output, button;
 let themeSel, themeChoice;
 let clickToggle = false;
 let imgPath, myBG;
-let textX, textY, textFont, textSize;
-let fontWeight, fontColor;
+let textX, textY, fontChoice, fontSize;
+let fontColor;
 let confettiColors = [];
 let confettiArray = [];
-let randomColor, c;
+let randomColor;
+let c, p, message;
 
 function setup() {
   /*
@@ -17,23 +18,24 @@ function setup() {
   */
   var canvas = createCanvas(canvasWidth, canvasHeight);
   canvas.parent("sketch-holder");
-  canvas.style("z-index", "-1");
+  // canvas.style("z-index", "-1");
   getInput();
   createDropdown();
   createToggle();
-
 }
 function draw() {
   /*
    *  - if confettiColors have loaded, it calls
    *    createConfetti() function
-  */
+   */
   if (myBG && clickToggle) {
     image(myBG, 0, 0);
     setStyle();
+    text("Happy Birthday",canvasWidth/2, (canvasHeight/2-(fontSize+10)))
+    message = textField.value() + "!!!";
+    text(message, canvasWidth/2, canvasHeight/2);
     if (confettiColors) {
-      for (let i = 0; i < 5; i++) {
-        // createConfetti();
+      for (let i = 0; i < 50; i++) {
         randomColor = round(random(0, confettiColors.length - 1));
         c = new Confetti(randomColor);
         confettiArray.push(c);
@@ -43,15 +45,12 @@ function draw() {
           confettiArray[i].display();
         }
       }
-      if (confettiArray.length > 1000) {
-        confettiArray.splice(0, 10);
+      if (confettiArray.length > 10000) {
+        confettiArray.splice(0, 100);
       }
     }
-
   }
-  // console.log(clickToggle);
-  // console.log(confettiArray.length);
-  // console.log(confettiColors);
+
 }
 function getInput() {
   /**********************************************
@@ -60,7 +59,9 @@ function getInput() {
    *  - positions box on DOM
    *  - adds parent to DOM paragraph ID
    **********************************************/
-  textField = createInput("Enter Name");
+  // used this link to help me solve my placeholder
+  // issue: https://github.com/processing/p5.js/issues/3281
+  textField = createInput().attribute("placeholder", "Enter Name");
   textField.position(20, 30);
   textField.parent("name");
 }
@@ -83,10 +84,12 @@ function createDropdown() {
 }
 function mySelectEvent() {
   /**********************************************
-   *  - called from 'createDropDown'
+   *  - called from 'createDropDown' when selection
+   *    is changed
    *  - sets themeChoice based on drop down option
    *  - loads JSON file
    *  - execute callback function 'processTheme'
+   *    which runs once JSON file is loaded
    **********************************************/
   themeChoice = themeSel.value();
   loadJSON("data/themes.json", processTheme);
@@ -94,6 +97,7 @@ function mySelectEvent() {
 function processTheme(data) {
   /**********************************************
    *  - called from mySelectEvent
+   *  - gets called from loadJSON, once file is loaded
    *  - loads global variables with data from JSON
    *  - uses themeChoice to limit data load to
    *    selected theme's data
@@ -102,9 +106,8 @@ function processTheme(data) {
   myBG = loadImage(imgPath);
   textX = data.themes[themeChoice].textXLoc;
   textY = data.themes[themeChoice].textYLoc;
-  textFont = data.themes[themeChoice].font;
-  textSize = data.themes[themeChoice].fontSize;
-  fontWeight = data.themes[themeChoice].fontWeight;
+  fontChoice = data.themes[themeChoice].font;
+  fontSize = data.themes[themeChoice].fontSize;
   fontColor = data.themes[themeChoice].textColor;
   confettiColors = data.themes[themeChoice].myColors;
 }
@@ -120,18 +123,8 @@ function createToggle() {
   button = createButton("Start/Stop");
   button.position(320, 30);
   button.parent("input");
-  button.mousePressed(startTransformation);
-}
-function startTransformation() {
-  /**********************************************
-   *  - called from createToggle()
-   *  - call toggler to reset clickToggle variable
-   *  - set's message variable to include user input
-   *  - outputs message to DOM
-   **********************************************/
-  toggler();
-  let message = "Happy Birthday <br>" + textField.value() + "!!!";
-  output.html(message);
+  // button.mousePressed(startTransformation);
+  button.mousePressed(toggler);
 }
 function setStyle() {
   /**********************************************
@@ -139,12 +132,12 @@ function setStyle() {
    *  - adjusts style and position based on theme
    *    choice from JSON file
    **********************************************/
-  output = select("#output");
-  output.position(windowWidth / textX, windowHeight / textY);
-  output.style("font-size", textSize);
-  output.style("font-family", textFont);
-  output.style("font-weight", fontWeight);
-  output.style("color", fontColor);
+  strokeWeight(2);
+  stroke(0);
+  textAlign(CENTER);
+  textSize(fontSize);
+  textFont(fontChoice);
+  fill(fontColor);
 }
 function toggler() {
   /**********************************************
@@ -156,7 +149,6 @@ function toggler() {
     // if value is true change to false
     clickToggle = false;
   } else {
-    clear();
     // else value is false and change to true
     clickToggle = true;
   }
@@ -172,7 +164,7 @@ class Confetti {
   constructor(fColor) {
     this.x = random(0, width);
     this.y = random(0, height);
-    this.confettiSize = 9;
+    this.confettiSize = 4;
     this.fillColor = confettiColors[fColor];
   }
   display() {
