@@ -2,13 +2,13 @@ let canvasWidth = 1024;
 let canvasHeight = 768;
 let textField, output, button;
 let themeSel, themeChoice;
-let clickToggle = true;
+let clickToggle = false;
 let imgPath, myBG;
 let textX, textY, textFont, textSize;
 let fontWeight, fontColor;
 let confettiColors = [];
 let confettiArray = [];
-let randomColor;
+let randomColor, c;
 
 function setup() {
   /*
@@ -21,17 +21,37 @@ function setup() {
   getInput();
   createDropdown();
   createToggle();
+
 }
 function draw() {
+  /*
+   *  - if confettiColors have loaded, it calls
+   *    createConfetti() function
+  */
   if (myBG && clickToggle) {
     image(myBG, 0, 0);
     setStyle();
-  }
-  if (confettiArray) {
-    for (let i = 0; i < confettiArray.length; i++) {
-      confettiArray[i].display();
+    if (confettiColors) {
+      for (let i = 0; i < 5; i++) {
+        // createConfetti();
+        randomColor = round(random(0, confettiColors.length - 1));
+        c = new Confetti(randomColor);
+        confettiArray.push(c);
+      }
+      if (confettiArray) {
+        for (let i = 0; i < confettiArray.length; i++) {
+          confettiArray[i].display();
+        }
+      }
+      if (confettiArray.length > 1000) {
+        confettiArray.splice(0, 10);
+      }
     }
+
   }
+  // console.log(clickToggle);
+  // console.log(confettiArray.length);
+  // console.log(confettiColors);
 }
 function getInput() {
   /**********************************************
@@ -108,26 +128,10 @@ function startTransformation() {
    *  - call toggler to reset clickToggle variable
    *  - set's message variable to include user input
    *  - outputs message to DOM
-   *  - if confettiColors have loaded, it calls
-   *    createConfetti() function
    **********************************************/
   toggler();
   let message = "Happy Birthday <br>" + textField.value() + "!!!";
   output.html(message);
-  if (confettiColors) {
-    createConfetti();
-  }
-}
-function createConfetti() {
-  /**********************************************
-   *  - called from startTransformation()
-   *  - pulls random color from confettiColors array
-   *  - creates confetti objects with random colors
-   **********************************************/
-  for (let i = 0; i < 5000; i++) {
-    randomColor = round(random(0, confettiColors.length - 1));
-    confettiArray[i] = new Confetti(randomColor);
-  }
 }
 function setStyle() {
   /**********************************************
@@ -145,7 +149,7 @@ function setStyle() {
 function toggler() {
   /**********************************************
    *  - called from start Transformation()
-   *  - this function sets the clickToggle variable 
+   *  - this function sets the clickToggle variable
    *    when mouse is clicked
    **********************************************/
   if (clickToggle) {
