@@ -1,56 +1,56 @@
 let canvasWidth = 1024;
 let canvasHeight = 768;
+let themeData;
 let textField, output, button;
 let themeSel, themeChoice;
 let clickToggle = false;
 let imgPath, myBG;
 let textX, textY, fontChoice, fontSize;
 let fontColor;
+let confettiSize, confettiCount;
 let confettiColors = [];
 let confettiArray = [];
 let randomColor;
 let c, p, message;
 
+function preload() {
+  let url = "data/themes.json";
+  themeData = loadJSON(url);
+}
+
 function setup() {
-  /*
-   positions the canvas and uses z-index to
-   make it a back ground image
-  */
+  /**********************************************
+   *  - creates Canvas
+   *  - sets parent for use in HTML file
+   **********************************************/
   var canvas = createCanvas(canvasWidth, canvasHeight);
   canvas.parent("sketch-holder");
-  // canvas.style("z-index", "-1");
   getInput();
   createDropdown();
   createToggle();
 }
 function draw() {
-  /*
-   *  - if confettiColors have loaded, it calls
-   *    createConfetti() function
-   */
-  if (myBG && clickToggle) {
+  button.mousePressed(toggler);
+  if (clickToggle) {
     image(myBG, 0, 0);
     setStyle();
-    text("Happy Birthday",canvasWidth/2, (canvasHeight/2-(fontSize+10)))
+    text("Happy Birthday", canvasWidth / 2, canvasHeight / 2 - (fontSize + 10));
     message = textField.value() + "!!!";
-    text(message, canvasWidth/2, canvasHeight/2);
-    if (confettiColors) {
-      for (let i = 0; i < 50; i++) {
-        randomColor = round(random(0, confettiColors.length - 1));
-        c = new Confetti(randomColor);
-        confettiArray.push(c);
-      }
-      if (confettiArray) {
-        for (let i = 0; i < confettiArray.length; i++) {
-          confettiArray[i].display();
-        }
-      }
-      if (confettiArray.length > 10000) {
-        confettiArray.splice(0, 100);
+    text(message, canvasWidth / 2, canvasHeight / 2);
+    for (let i = 0; i < confettiCount; i++) {
+      randomColor = round(random(0, confettiColors.length - 1));
+      c = new Confetti(randomColor, confettiSize);
+      confettiArray.push(c);
+    }
+    if (confettiArray) {
+      for (let i = 0; i < confettiArray.length; i++) {
+        confettiArray[i].display();
       }
     }
+    if (confettiArray.length >= confettiCount * 10) {
+      confettiArray.splice(0, confettiCount);
+    }
   }
-
 }
 function getInput() {
   /**********************************************
@@ -68,18 +68,19 @@ function getInput() {
 function createDropdown() {
   /**********************************************
    *  - called from setup()
-   *  - creates drop down options
+   *  - creates drop down options using JSON file
+   *    to ensure any additional records in JSON file
+   *    will be included as a choice
    *  - positions drop down on DOM
-   *  - adds parent to DOM paragraph ID
    *  - executes callback function 'mySelectEvent'
    *    when user changes selection
    **********************************************/
-  themeSel = createSelect();
+  themeSel = createSelect().attribute("placeholder", "Select Theme");
   themeSel.position(180, 30);
   themeSel.option("Select Theme", "100");
-  themeSel.option("Blue Bricks", "0");
-  themeSel.option("Birthday Candles", "1");
-  themeSel.option("Pink Icing", "2");
+  for (let i = 0; i < themeData.themes.length; i++) {
+    themeSel.option(themeData.themes[i].themeName, i);
+  }
   themeSel.changed(mySelectEvent);
 }
 function mySelectEvent() {
@@ -87,12 +88,10 @@ function mySelectEvent() {
    *  - called from 'createDropDown' when selection
    *    is changed
    *  - sets themeChoice based on drop down option
-   *  - loads JSON file
-   *  - execute callback function 'processTheme'
-   *    which runs once JSON file is loaded
+   *  - calls processTheme
    **********************************************/
   themeChoice = themeSel.value();
-  loadJSON("data/themes.json", processTheme);
+  processTheme();
 }
 function processTheme(data) {
   /**********************************************
@@ -102,14 +101,16 @@ function processTheme(data) {
    *  - uses themeChoice to limit data load to
    *    selected theme's data
    **********************************************/
-  imgPath = data.themes[themeChoice].photo;
+  imgPath = themeData.themes[themeChoice].photo;
   myBG = loadImage(imgPath);
-  textX = data.themes[themeChoice].textXLoc;
-  textY = data.themes[themeChoice].textYLoc;
-  fontChoice = data.themes[themeChoice].font;
-  fontSize = data.themes[themeChoice].fontSize;
-  fontColor = data.themes[themeChoice].textColor;
-  confettiColors = data.themes[themeChoice].myColors;
+  textX = themeData.themes[themeChoice].textXLoc;
+  textY = themeData.themes[themeChoice].textYLoc;
+  fontChoice = themeData.themes[themeChoice].font;
+  fontSize = themeData.themes[themeChoice].fontSize;
+  fontColor = themeData.themes[themeChoice].textColor;
+  confettiColors = themeData.themes[themeChoice].myColors;
+  confettiSize = themeData.themes[themeChoice].confettiSize;
+  confettiCount = themeData.themes[themeChoice].confettiCount;
 }
 function createToggle() {
   /**********************************************
@@ -124,7 +125,7 @@ function createToggle() {
   button.position(320, 30);
   button.parent("input");
   // button.mousePressed(startTransformation);
-  button.mousePressed(toggler);
+  // button.mousePressed(toggler);
 }
 function setStyle() {
   /**********************************************
@@ -147,11 +148,19 @@ function toggler() {
    **********************************************/
   if (clickToggle) {
     // if value is true change to false
+    clearCanvas();
     clickToggle = false;
   } else {
     // else value is false and change to true
     clickToggle = true;
+    // clearCanvas();
   }
+  console.log(clickToggle);
+}
+function clearCanvas() {
+  clear();
+  setup();
+  confettiArray = [];
 }
 class Confetti {
   /**********************************************
@@ -161,10 +170,10 @@ class Confetti {
    *  - includes method to display object
    **********************************************/
 
-  constructor(fColor) {
+  constructor(fColor, cSize) {
     this.x = random(0, width);
     this.y = random(0, height);
-    this.confettiSize = 4;
+    this.confettiSize = cSize;
     this.fillColor = confettiColors[fColor];
   }
   display() {

@@ -9,12 +9,14 @@
             "textColor": "255",
             "textXLoc": "8",
             "textYLoc": "3",
+            "confettiSize": 6,
+            "confettiCount": 100,
              "myColors": [
-                "rgba(238,238,238, 0.3)",
-                "rgba(204,204,204, 0.3)",
-                "rgba(187,187,187, 0.3)",
-                "rgba(170,170,170, 0.3)",
-                "rgba(119,119,119)"
+                "rgba(233, 79, 55, 0.8)",
+                "rgba(57, 62, 65, 0.8)",
+                "rgba(241, 218, 196, 0.8)",
+                "rgba(246, 242, 255, 0.8)",
+                "rgba(119,119,119, 0.8)"
             ]
         },
         {
@@ -26,12 +28,14 @@
             "textColor": "255",
             "textXLoc": "8",
             "textYLoc": "3",
+            "confettiSize": 8,
+            "confettiCount": 20,
             "myColors": [
-                "rgba(143, 2, 34, 0.3)",
-                "rgba(202, 128, 7, 0.3)",
-                "rgba(4, 135, 57, 0.3)",
-                "rgba(230, 7, 28, 0.3)",
-                "rgba(0, 91, 154, 0.3)"
+                "rgba(143, 2, 34, 0.8)",
+                "rgba(202, 128, 7, 0.8)",
+                "rgba(4, 135, 57, 0.8)",
+                "rgba(230, 7, 28, 0.8)",
+                "rgba(0, 91, 154, 0.8)"
             ]
         },
         {
@@ -40,15 +44,17 @@
             "photo": "images/pinkIcing.jpg",
             "font": "Brush Script MT",
             "fontSize": 120,
-            "textColor": "rgb(245, 5, 144)",
+            "textColor": "rgb(255,255,255)",
             "textXLoc": "8",
             "textYLoc": "3",
+            "confettiSize": 5,
+            "confettiCount": 120,
             "myColors": [
-                "rgba(238,238,238, 1)",
-                "rgba(204,204,204, 1)",
-                "rgba(187,187,187, 1)",
-                "rgba(170,170,170, 1)",
-                "rgba(119,119,119, 1)"
+                "rgba(170, 170, 170, 0.8)",
+                "rgba(187, 187, 187, 0.8)",
+                "rgba(204, 204, 204, 0.8)",
+                "rgba(221, 221, 221, 0.8)",
+                "rgba(238, 238, 238, 0.8)"
             ]
         }
     ]
