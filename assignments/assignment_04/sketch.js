@@ -12,6 +12,8 @@ let confettiColors = [];
 let confettiArray = [];
 let randomColor;
 let c, p, message;
+let songs = [];
+let song, songPath;
 
 function preload() {
   let url = "data/themes.json";
@@ -25,9 +27,15 @@ function setup() {
    **********************************************/
   var canvas = createCanvas(canvasWidth, canvasHeight);
   canvas.parent("sketch-holder");
+  for (let i = 0; i < themeData.themes.length; i++) {
+    songPath = themeData.themes[i].song;
+    songs[i] = loadSound(songPath);
+  }
   getInput();
   createDropdown();
   createToggle();
+  // button to toggle play/pause
+  playButton = createButton("play");
 }
 function draw() {
   button.mousePressed(toggler);
@@ -51,6 +59,19 @@ function draw() {
       confettiArray.splice(0, confettiCount);
     }
   }
+  playButton.mousePressed(function () {
+    if (songs[themeChoice].isPlaying()) {
+      // pause the song if playing
+      songs[themeChoice].pause();
+      //toggle the button to say play
+      playButton.html("play");
+    } else {
+      // play the song if paused
+      songs[themeChoice].play();
+      //toggle the button to say play
+      playButton.html("pause");
+    }
+  });
 }
 function getInput() {
   /**********************************************
@@ -72,8 +93,8 @@ function createDropdown() {
    *    to ensure any additional records in JSON file
    *    will be included as a choice
    *  - positions drop down on DOM
-   *  - executes callback function 'mySelectEvent'
-   *    when user changes selection
+   *  - executes anonymous function when user
+   *    changes selection
    **********************************************/
   themeSel = createSelect().attribute("placeholder", "Select Theme");
   themeSel.position(180, 30);
@@ -81,17 +102,15 @@ function createDropdown() {
   for (let i = 0; i < themeData.themes.length; i++) {
     themeSel.option(themeData.themes[i].themeName, i);
   }
-  themeSel.changed(mySelectEvent);
-}
-function mySelectEvent() {
-  /**********************************************
-   *  - called from 'createDropDown' when selection
-   *    is changed
-   *  - sets themeChoice based on drop down option
-   *  - calls processTheme
-   **********************************************/
-  themeChoice = themeSel.value();
-  processTheme();
+  themeSel.changed(function () {
+    /**********************************************
+     *  - called from when selection is changed
+     *  - sets themeChoice based on drop down option
+     *  - calls processTheme()
+     **********************************************/
+    themeChoice = themeSel.value();
+    processTheme();
+  });
 }
 function processTheme(data) {
   /**********************************************
@@ -139,6 +158,21 @@ function setStyle() {
   textSize(fontSize);
   textFont(fontChoice);
   fill(fontColor);
+}
+function playSong() {
+  playButton.mousePressed(function () {
+    if (songs[themeChoice].isPlaying()) {
+      // pause the song if playing
+      songs[themeChoice].pause();
+      //toggle the button to say play
+      playButton.html("play");
+    } else {
+      // play the song if paused
+      songs[themeChoice].play();
+      //toggle the button to say play
+      playButton.html("pause");
+    }
+  });
 }
 function toggler() {
   /**********************************************
