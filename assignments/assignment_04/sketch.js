@@ -16,14 +16,20 @@ let songs = [];
 let song, songPath;
 
 function preload() {
+  /**********************************************
+   *  - Loads JSON file 
+   **********************************************/
   let url = "data/themes.json";
   themeData = loadJSON(url);
 }
-
 function setup() {
   /**********************************************
    *  - creates Canvas
    *  - sets parent for use in HTML file
+   *  - loads songs into a songs[] array
+   *  - calls input functions to create
+   *    user interactions
+   *  - creates Sound On/ Mute button
    **********************************************/
   var canvas = createCanvas(canvasWidth, canvasHeight);
   canvas.parent("sketch-holder");
@@ -34,10 +40,23 @@ function setup() {
   getInput();
   createDropdown();
   createToggle();
-  // button to toggle play/pause
-  playButton = createButton("play");
+  playButton = createButton("Sound On");
+  playButton.position(410, 30);
+  playButton.parent("input");
 }
 function draw() {
+  /**********************************************
+   *  - calls toggler() function when button is
+   *    pressed
+   *  - loads image
+   *  - sets text style according to JSON Specs
+   *  - prints Birthday massage and includes user 
+   *    input value
+   *  - creates and displays confetti according 
+   *    to JSON specs
+   *  - splices confetti objects, creating twinkling effect
+   *  - calls anonymous function when playButton is pressed
+   **********************************************/
   button.mousePressed(toggler);
   if (clickToggle) {
     image(myBG, 0, 0);
@@ -60,16 +79,16 @@ function draw() {
     }
   }
   playButton.mousePressed(function () {
-    if (songs[themeChoice].isPlaying()) {
-      // pause the song if playing
+    if (songs[themeChoice].isLooping()) {
+      // pause the song if it is looping
       songs[themeChoice].pause();
-      //toggle the button to say play
-      playButton.html("play");
+      //toggle the button to say Sound On
+      playButton.html("Sound On");
     } else {
       // play the song if paused
-      songs[themeChoice].play();
-      //toggle the button to say play
-      playButton.html("pause");
+      songs[themeChoice].loop();
+      //toggle the button to say mute
+      playButton.html("Mute");
     }
   });
 }
@@ -104,7 +123,7 @@ function createDropdown() {
   }
   themeSel.changed(function () {
     /**********************************************
-     *  - called from when selection is changed
+     *  - called when selection is changed
      *  - sets themeChoice based on drop down option
      *  - calls processTheme()
      **********************************************/
@@ -114,8 +133,8 @@ function createDropdown() {
 }
 function processTheme(data) {
   /**********************************************
-   *  - called from mySelectEvent
-   *  - gets called from loadJSON, once file is loaded
+   *  - called from anonymous function in createDropdown()
+   *    when selection is changed
    *  - loads global variables with data from JSON
    *  - uses themeChoice to limit data load to
    *    selected theme's data
@@ -137,14 +156,10 @@ function createToggle() {
    *  - creates toggle button
    *  - positions button on DOM
    *  - assigns to DOM's parent using ID
-   *  - executes callback function 'startTransformation'
-   *    when button is pressed
    **********************************************/
-  button = createButton("Start/Stop");
+  button = createButton("Create");
   button.position(320, 30);
   button.parent("input");
-  // button.mousePressed(startTransformation);
-  // button.mousePressed(toggler);
 }
 function setStyle() {
   /**********************************************
@@ -159,39 +174,42 @@ function setStyle() {
   textFont(fontChoice);
   fill(fontColor);
 }
-function playSong() {
-  playButton.mousePressed(function () {
-    if (songs[themeChoice].isPlaying()) {
-      // pause the song if playing
-      songs[themeChoice].pause();
-      //toggle the button to say play
-      playButton.html("play");
-    } else {
-      // play the song if paused
-      songs[themeChoice].play();
-      //toggle the button to say play
-      playButton.html("pause");
-    }
-  });
-}
 function toggler() {
   /**********************************************
-   *  - called from start Transformation()
-   *  - this function sets the clickToggle variable
-   *    when mouse is clicked
+   *  - called from draw() when button is pressed
+   *  - sets the clickToggle variable
+   *  - changes value of clickToggle
+   *  - if true, it calls clearCanvas()
+   *  - changes HTML value on button
+   *  - disables dropdown and text field
    **********************************************/
   if (clickToggle) {
     // if value is true change to false
     clearCanvas();
     clickToggle = false;
+    button.html("Create");
   } else {
     // else value is false and change to true
     clickToggle = true;
-    // clearCanvas();
+    button.html("Clear");
+    themeSel.attribute("disabled", "");
+    textField.attribute("disabled", "");
   }
-  console.log(clickToggle);
 }
 function clearCanvas() {
+  /**********************************************
+   *  - called from toggler()
+   *  - stops music and changes HTM on playButton
+   *  - removes playButton
+   *  - removes dropdown and name text field
+   *  - clears screen and calls setup()
+   *  - clears confettiArray
+   **********************************************/
+  songs[themeChoice].stop();
+  playButton.html("Sound On");
+  themeSel.remove();
+  textField.remove();
+  playButton.remove();
   clear();
   setup();
   confettiArray = [];
