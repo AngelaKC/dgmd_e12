@@ -13,11 +13,11 @@ let confettiArray = [];
 let randomColor;
 let c, p, message;
 let songs = [];
-let song, songPath;
+let song, songPath, muteImg;
 
 function preload() {
   /**********************************************
-   *  - Loads JSON file 
+   *  - Loads JSON file
    **********************************************/
   let url = "data/themes.json";
   themeData = loadJSON(url);
@@ -40,9 +40,6 @@ function setup() {
   getInput();
   createDropdown();
   createToggle();
-  playButton = createButton("Sound On");
-  playButton.position(410, 30);
-  playButton.parent("input");
 }
 function draw() {
   /**********************************************
@@ -50,9 +47,9 @@ function draw() {
    *    pressed
    *  - loads image
    *  - sets text style according to JSON Specs
-   *  - prints Birthday massage and includes user 
+   *  - prints Birthday massage and includes user
    *    input value
-   *  - creates and displays confetti according 
+   *  - creates and displays confetti according
    *    to JSON specs
    *  - splices confetti objects, creating twinkling effect
    *  - calls anonymous function when playButton is pressed
@@ -77,7 +74,7 @@ function draw() {
     if (confettiArray.length >= confettiCount * 10) {
       confettiArray.splice(0, confettiCount);
     }
-  }
+  
   playButton.mousePressed(function () {
     if (songs[themeChoice].isLooping()) {
       // pause the song if it is looping
@@ -88,9 +85,10 @@ function draw() {
       // play the song if paused
       songs[themeChoice].loop();
       //toggle the button to say mute
-      playButton.html("Mute");
+      playButton.html("Sound Off");
     }
   });
+}
 }
 function getInput() {
   /**********************************************
@@ -98,12 +96,14 @@ function getInput() {
    *  - creates input box to consume user name
    *  - positions box on DOM
    *  - adds parent to DOM paragraph ID
+   *  - adds class for CSS control
+   *  - adds parent for location on DOM
    **********************************************/
   // used this link to help me solve my placeholder
   // issue: https://github.com/processing/p5.js/issues/3281
   textField = createInput().attribute("placeholder", "Enter Name");
-  textField.position(20, 30);
-  textField.parent("name");
+  textField.class("inputName");
+  textField.parent("input");
 }
 function createDropdown() {
   /**********************************************
@@ -112,11 +112,13 @@ function createDropdown() {
    *    to ensure any additional records in JSON file
    *    will be included as a choice
    *  - positions drop down on DOM
+   *  - adds class for CSS control
    *  - executes anonymous function when user
    *    changes selection
    **********************************************/
   themeSel = createSelect().attribute("placeholder", "Select Theme");
-  themeSel.position(180, 30);
+  themeSel.class("dropdownSelect");
+  themeSel.parent("input");
   themeSel.option("Select Theme", "100");
   for (let i = 0; i < themeData.themes.length; i++) {
     themeSel.option(themeData.themes[i].themeName, i);
@@ -128,7 +130,16 @@ function createDropdown() {
      *  - calls processTheme()
      **********************************************/
     themeChoice = themeSel.value();
+      /**********************************************
+   *  - creates 'Sound On/ Mute' button
+   *  - adds class for CSS control
+   *  - adds parent for location on DOM
+   **********************************************/
+  playButton = createButton("Sound On");
+  playButton.class("soundButton");
+  playButton.parent("input");
     processTheme();
+    
   });
 }
 function processTheme(data) {
@@ -155,10 +166,11 @@ function createToggle() {
    *  - called from setup()
    *  - creates toggle button
    *  - positions button on DOM
+   *  - adds class for CSS control
    *  - assigns to DOM's parent using ID
    **********************************************/
   button = createButton("Create");
-  button.position(320, 30);
+  button.class("transform");
   button.parent("input");
 }
 function setStyle() {
@@ -200,7 +212,7 @@ function clearCanvas() {
   /**********************************************
    *  - called from toggler()
    *  - stops music and changes HTM on playButton
-   *  - removes playButton
+   *  - removes playButton and button
    *  - removes dropdown and name text field
    *  - clears screen and calls setup()
    *  - clears confettiArray
@@ -210,6 +222,7 @@ function clearCanvas() {
   themeSel.remove();
   textField.remove();
   playButton.remove();
+  button.remove();
   clear();
   setup();
   confettiArray = [];

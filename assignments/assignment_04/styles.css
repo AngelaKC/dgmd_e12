@@ -1,34 +1,62 @@
 body {
+  /* background-color: #dee0df;  */
   font-family: Arial, Helvetica, sans-serif;
 }
-h1 {
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
+h1,h2,h3,p{
+  /* color: #3b2b44; */
+  margin: 1rem;
   padding: 0;
 }
+
 section {
   margin: 0;
   padding: 0;
 }
-p{
-  padding: 0;
-  margin:0;
-}
 #input{
-  display: block;
-  background-color: #fff;
-  padding-right: 10rem;
-  padding-bottom: 3rem;
-
-}
-#output{
-  color: #fff;
-  font-size: 5rem;
-  font-weight: bold;
-  padding:0;
+  padding-left: 1rem;
   margin:0;
+  display: grid;
+  grid-template-columns: 150px 150px 100px;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    ".inputName .dropdownSelect .transform  .soundButton"
+}
+
+.inputName{
+  padding: 0;
+  margin: 0.5rem;
+  border-radius: 10px;
   text-align: center;
+}
+.dropdownSelect{
+  padding: 0;
+  margin: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+}
+.transform{
+  margin: 0.5rem;
+}
+.soundButton{
+  margin: 0.5rem;
+  margin-left: 320px;
+  font-size: 10px;
+  justify-self: end;
+  background-color:#9a8c98;
+}
+button {
+  background-color: #3b2b44; /* Purple */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 10px;
+}
+button:hover{
+  background-color: #7ca5b8;
+  transition: 0.7s'
 }
 .noSelect {
   -moz-user-select: none;
