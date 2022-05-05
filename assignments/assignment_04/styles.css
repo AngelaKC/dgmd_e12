@@ -7,10 +7,14 @@ h1,h2,h3,p{
   margin: 1rem;
   padding: 0;
 }
-
-section {
-  margin: 0;
+p, section{
+  margin: 1.5rem;
   padding: 0;
+  width: 1000px;
+  font-size: 1.5rem;;
+}
+li{
+  margin: 1rem;
 }
 #input{
   padding-left: 1rem;

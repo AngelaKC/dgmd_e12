@@ -29,7 +29,6 @@ function setup() {
    *  - loads songs into a songs[] array
    *  - calls input functions to create
    *    user interactions
-   *  - creates Sound On/ Mute button
    **********************************************/
   var canvas = createCanvas(canvasWidth, canvasHeight);
   canvas.parent("sketch-holder");
@@ -53,6 +52,7 @@ function draw() {
    *    to JSON specs
    *  - splices confetti objects, creating twinkling effect
    *  - calls anonymous function when playButton is pressed
+   *  - creates Sound On/ Mute button
    **********************************************/
   button.mousePressed(toggler);
   if (clickToggle) {
@@ -74,21 +74,21 @@ function draw() {
     if (confettiArray.length >= confettiCount * 10) {
       confettiArray.splice(0, confettiCount);
     }
-  
-  playButton.mousePressed(function () {
-    if (songs[themeChoice].isLooping()) {
-      // pause the song if it is looping
-      songs[themeChoice].pause();
-      //toggle the button to say Sound On
-      playButton.html("Sound On");
-    } else {
-      // play the song if paused
-      songs[themeChoice].loop();
-      //toggle the button to say mute
-      playButton.html("Sound Off");
-    }
-  });
-}
+
+    playButton.mousePressed(function () {
+      if (songs[themeChoice].isLooping()) {
+        // pause the song if it is looping
+        songs[themeChoice].pause();
+        //toggle the button to say Sound On
+        playButton.html("Sound On");
+      } else {
+        // play the song if paused
+        songs[themeChoice].loop();
+        //toggle the button to say mute
+        playButton.html("Sound Off");
+      }
+    });
+  }
 }
 function getInput() {
   /**********************************************
@@ -130,16 +130,15 @@ function createDropdown() {
      *  - calls processTheme()
      **********************************************/
     themeChoice = themeSel.value();
-      /**********************************************
-   *  - creates 'Sound On/ Mute' button
-   *  - adds class for CSS control
-   *  - adds parent for location on DOM
-   **********************************************/
-  playButton = createButton("Sound On");
-  playButton.class("soundButton");
-  playButton.parent("input");
+    /**********************************************
+     *  - creates 'Sound On/ Mute' button
+     *  - adds class for CSS control
+     *  - adds parent for location on DOM
+     **********************************************/
+    playButton = createButton("Sound On");
+    playButton.class("soundButton");
+    playButton.parent("input");
     processTheme();
-    
   });
 }
 function processTheme(data) {
@@ -229,8 +228,7 @@ function clearCanvas() {
 }
 class Confetti {
   /**********************************************
-   *  - called from createConfetti() to fill array
-   *  - called from draw() to display
+   *  - called from draw() 
    *  - class definition for confetti objects
    *  - includes method to display object
    **********************************************/

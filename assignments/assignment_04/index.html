@@ -12,11 +12,138 @@
   <body>
     <h1>DGMD E-12 Introduction to Creative Exploration on the Web</h1>
     <h2>Assignment 4: Final Project | Angela Carey</h2>
-    <h3> Make yourself a Birthday Card</h3>
-    <p> Enter name and choose your theme. Then click on the Create button to enjoy!</p>
+    <h3>Make yourself a Birthday Card</h3>
+    <p>
+      Enter name and choose your theme. Then click on the Create button to
+      enjoy!
+    </p>
     <section id="input"></section>
     <section id="sketch-holder">
       <!-- <div id="icon"></div> -->
+    </section>
+    <section>
+      <h2>My Process</h2>
+      <p>
+        The idea of a birthday e-card came to me in Week 5. In Week 5 we learned
+        functions and as I was playing around with the informal exercise, the
+        color palette reminded me of balloons and sparked the idea of a Birthday
+        e-card.
+      </p>
+      <p>
+        I came to this class with a background in programming but very limited
+        experience in Web programming. I had a basic understanding of JSON
+        files, but did not know how to use them. When it came time to do this
+        final project, I really wanted to incorporate a JSON data file and get
+        more comfortable in that world.
+      </p>
+      <p>Creating this project was quite a journey:</p>
+      <ul>
+        <li>
+          I started with my Assignment 3, which was kind of a prototype of what
+          I thought the final project might look like.
+        </li>
+        <li>
+          I decided to use small squares as confetti instead of circles as
+          balloons.
+        </li>
+        <li>
+          In the early iterations of the project, the confetti was filling the
+          screen and covering the message, so I started to think about creating
+          start/sop functionality, as I used in Assignment 1, to stop the confetti when
+          it reached a certain point.
+        </li>
+        <li>
+          The next stage was trying to figure out how I wanted the confetti to
+          look.
+          <ul>
+            <li>Did I want it to appear randomly?</li>
+            <li>Did I want it start at the top and fall downwards?</li>
+            <li>
+              How would I handle the objects when they hit the bottom of the
+              screen?
+            </li>
+
+            <li>
+              I should figure out how to remove them to control the size of the
+              array and minimize processing errors.
+            </li>
+          </ul>
+        </li>
+        <li>
+          I spent some time watching our friend at
+          <a href="https://www.youtube.com/watch?v=EyG_2AdHlzY"
+            >The Coding Train
+          </a>
+          to remind me how to remove objects from an array of objects. He showed
+          an example where he created a trail of ellipses (call out to Alex
+          here, as I of course remembered Alex had shown us something similar in
+          the earlier classes).
+        </li>
+        <li>
+          Ultimately, I decided to go with creating the confetti in random
+          locations and then remove (splice) confetti objects from the beginning 
+          of the array. I was hoping it would give a twinkling effect, which it 
+          did! Finding the right ratio of adding/removing confetti objects
+          was key and I used that calculation in my code.
+        </li>
+        <li>
+          I knew early on that I wanted to use JSON and create a data file to
+          hold values. It took several iterations to decide what types of data I
+          wanted to use and what should be stored there. In the end, I decided
+          to store values for the look and feel of each background choice/theme.
+        </li>
+        <li>
+          I decided the JSON file should contain the urls for images and mp3s. 
+          It should also control the number, size and colors of the 
+          confetti, which can be unique to each theme. I also added in text 
+          look and feel content as each theme may have it’s own vibe.
+        </li>
+        <li>
+          I coded the .js file in such a way that it will be able to handle
+          added and/or removed objects to the JSON file seamlessly.
+        </li>
+        <li>
+          The journey of loading the JSON file and learning to use that data was
+          filled with many trial and error iterations. I finally landed on
+          something that made sense to me and actually got the job done!
+        </li>
+        <li>
+          The sound files where a little tricky. At first I was running the play
+          sound in the draw loop which caused sounds no person should ever have
+          to hear. Eventually, I was able to work out how to make that work.
+        </li>
+        <li>
+          The next problem I encountered had to do with the name and drop down
+          choices. At first the user could change the choice without clearing
+          the screen which caused some odd results. I also had an issue where I
+          was creating the buttons multiple times. I solved the issue through
+          disabling the user input after they made their selections and by using
+          a clearCanvas() function where I remove the buttons and rerun the set
+          up() function. Similar to what I did in Assignment 1, just more
+          complex.
+        </li>
+        <li>
+          The next thing I wanted to do was give the user the ability to play
+          and pause the sound. I created a button to give them control and had
+          to code to handle that in all scenarios.
+        </li>
+        <li>
+          The final piece was look and feel. I spent some time deciding how I
+          wanted the user input objects to look. I made sure the “Sound on/ 
+          Sound Off” button did not appear until the canvas was loaded. I 
+          learned how to add classes to the DOM objects I created in order 
+          to control the look and feel through CSS.
+        </li>
+      </ul>
+      <p> If I had additional time to work on this project, I would spend 
+        time adding more themes. I would consider adding a text box where 
+        the user could control the entire message, and not be limited to
+        "Happy Birthday". Eventually, I would like to learn how to make it
+        more like modern e-cards today, where you can create and send to
+        a friend or loved one.
+      </p>
+
+      <p>I learned a ton doing this project. Thank you for an amazing class!</p>
     </section>
   </body>
 </html>
